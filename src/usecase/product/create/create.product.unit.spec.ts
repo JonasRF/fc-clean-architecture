@@ -36,4 +36,14 @@ describe("Unit test create product use case", () => {
 
     await expect(usecase.execute(input)).rejects.toThrow("Name is required");
   });
+
+  it("should throw an error when price is less than zero", async () => {
+    const productRepository = MockRepository();
+    const usecase = new CreateProductUseCase(productRepository);
+
+    input.name = "Notebook";
+    input.price = -20;
+
+    await expect(usecase.execute(input)).rejects.toThrow("Price must be greater than zero");
+  });
 });
