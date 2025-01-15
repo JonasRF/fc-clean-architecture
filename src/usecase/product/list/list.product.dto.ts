@@ -1,5 +1,5 @@
 
-export interface InputCreateProductDto { }
+export interface InputListProductDto {}
 
 type Product = {
     id: string;
@@ -7,6 +7,6 @@ type Product = {
     price: number;
 }
 
-export interface OutputCreateProductDto {
+export interface OutputListProductDto {
     products: Product[];
 }

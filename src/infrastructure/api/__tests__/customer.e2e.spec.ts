@@ -51,15 +51,16 @@ describe("E2E test for customer", () => {
         },
       });
     expect(response.status).toBe(200);
+   
     const response2 = await request(app)
       .post("/customer")
       .send({
         name: "Jane",
         address: {
           street: "Street 2",
-          city: "City 2",
-          number: 1234,
-          zip: "12344",
+          city: "City",
+          number: 123,
+          zip: "12345",
         },
       });
     expect(response2.status).toBe(200);
@@ -95,8 +96,6 @@ describe("E2E test for customer", () => {
     expect(listResponseXML.text).toContain(`<name>Jane</name>`);
     expect(listResponseXML.text).toContain(`<street>Street 2</street>`);
     expect(listResponseXML.text).toContain(`</customers>`);
-    
-
-    
+      
   });
 });

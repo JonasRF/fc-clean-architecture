@@ -35,12 +35,12 @@ describe("Test list product use case", () => {
 
         const products = await usecase.execute({});
 
-        expect(products.length).toEqual(2);
-        expect(products[0].id).toEqual("abc");
-        expect(products[0].name).toEqual("Notebook");
-        expect(products[0].price).toEqual(1500);
-        expect(products[1].id).toEqual("def");
-        expect(products[1].name).toEqual("Notebook Dell");
-        expect(products[1].price).toEqual(2500);
+        expect(products.products.length).toEqual(2);
+        expect(products.products[0].id).toEqual("abc");
+        expect(products.products[0].name).toEqual("Notebook");
+        expect(products.products[0].price).toEqual(1500);
+        expect(products.products[1].id).toEqual("def");
+        expect(products.products[1].name).toEqual("Notebook Dell");
+        expect(products.products[1].price).toEqual(2500);
     });
 });
