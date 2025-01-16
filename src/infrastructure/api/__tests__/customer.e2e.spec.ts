@@ -39,7 +39,7 @@ describe("E2E test for customer", () => {
   });
 
   it("should list all customer", async () => {
-    const response = await request(app)
+    const response1 = await request(app)
       .post("/customer")
       .send({
         name: "John",
@@ -50,7 +50,7 @@ describe("E2E test for customer", () => {
           zip: "12345",
         },
       });
-    expect(response.status).toBe(200);
+    expect(response1.status).toBe(200);
    
     const response2 = await request(app)
       .post("/customer")

@@ -4,6 +4,7 @@ import {
 } from "./create.product.dto";
 import ProductRepositoryInterface from "../../../domain/product/repository/product-repository-interface";
 import ProductFactory from "../../../domain/product/factory/product.factory";
+import Product from "../../../domain/product/entity/product";
 
 export default class CreateProductUseCase {
   private productRepository: ProductRepositoryInterface;
@@ -13,11 +14,25 @@ export default class CreateProductUseCase {
   }
 
   async execute(input: InputCreateProductDto): Promise<OutputCreateProductDto> {
-    const product = ProductFactory.create("a", input.name, input.price);
+    const productFactory = ProductFactory.create(
+      input.id,
+      input.name,
+      input.price,
+    );
+
+    const product = new Product(
+      productFactory.id,
+      productFactory.name,
+      productFactory.price,
+    );
+
+    await this.productRepository.create(product);
+
     return {
       id: product.id,
       name: product.name,
       price: product.price,
-    };
+    }
   }
 }
+

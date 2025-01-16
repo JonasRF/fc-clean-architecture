@@ -1,10 +1,10 @@
 import Product from "../../../domain/product/entity/product";
-import ProductInterface from "../../../domain/product/entity/product.interface";
 import ProductRepositoryInterface from "../../../domain/product/repository/product-repository-interface";
 import { InputListProductDto, OutputListProductDto } from "./list.product.dto";
 
 export default class ListProductUseCase {
   private productRepository: ProductRepositoryInterface;
+  
   constructor(ProductRepository: ProductRepositoryInterface) {
     this.productRepository = ProductRepository;
   }
@@ -19,13 +19,11 @@ export default class ListProductUseCase {
 class OutputMapper {
   static toOutput(product: Product[]): OutputListProductDto {
     return {
-      products: product.map(product => {
-        return {
+      products: product.map((product) => ({     
           id: product.id,
           name: product.name,
           price: product.price,
-        }
-      })
+      }))
     }
   }
 }

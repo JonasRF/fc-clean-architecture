@@ -27,6 +27,7 @@ describe("Test create product use case", () => {
         const usecase = new CreateProductUseCase(productRepository);
 
         const input = {
+            id: 'a',
             name: "Notebook",
             price: 2000.0,
         };
@@ -45,6 +46,7 @@ describe("Test create product use case", () => {
         const usecase = new CreateProductUseCase(productRepository);
 
         const input = {
+            id: 'a',
             name: "",
             price: 2000.0,
         };
@@ -57,6 +59,7 @@ describe("Test create product use case", () => {
         const usecase = new CreateProductUseCase(productRepository);
 
         const input = {
+            id: 'a',
             name: "Notebook",
             price: -20.0,
         };

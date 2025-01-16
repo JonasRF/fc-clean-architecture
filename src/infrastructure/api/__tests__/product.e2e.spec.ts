@@ -14,7 +14,7 @@ describe("E2E test for product", () => {
     const response = await request(app)
       .post("/product")
       .send({
-        type: "a",
+        id: "a",
         name: "Product",
         price: 100,
       });
@@ -26,34 +26,34 @@ describe("E2E test for product", () => {
 
   it("should not create a product", async () => {
     const response = await request(app).post("/product").send({
-      type: "a",
+      id: "a",
     });
     expect(response.status).toBe(500);
   });
 
-  it("should list all products", async () => {
-    const response = await request(app)
-      .post("/product")
-      .send({
-        type: "a",
-        name: "Product",
-        price: 100,
-      });
-    expect(response.status).toBe(200);
-   
-    const response2 = await request(app)
-      .post("/product")
-      .send({
-        type: "ab",
-        name: "Product 2",
-        price: 200,
-      });
+  it('should list all products', async () => {
+    const response1 = await request(app).post('/product').send({
+      id: 'a',
+      name: 'Product 1',
+      price: 10,
+    });
+    expect(response1.status).toBe(200);
+
+    const response2 = await request(app).post('/product').send({
+      id: 'a',
+      name: 'Product 2',
+      price: 20,
+    });
     expect(response2.status).toBe(200);
 
-    const listResponse = await request(app).get("/product").send();
-    expect(listResponse.status).toBe(200); 
-    expect(listResponse.body.products.length).toBe(2);
+  const listResponse = await request(app).get("/product").send();
 
-  
+    expect(listResponse.status).toBe(200);
+    expect(listResponse.body.products.length).toBe(2);
+    expect(listResponse.body.products[0].name).toBe("Product 1");
+    expect(listResponse.body.products[0].price).toBe(10);
+    expect(listResponse.body.products[1].name).toBe("Product 2");
+    expect(listResponse.body.products[1].price).toBe(20);  
   });
 });
+
